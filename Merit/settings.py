@@ -38,7 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'meritapp',
-    'bootstrap4'
+    'bootstrap4',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
