@@ -19,5 +19,11 @@ from django.conf.urls import url,include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    url(r'',include('meritapp.urls'))
+    url(r'',include('meritapp.urls')), 
+    url('^accounts/register/',
+        RegistrationView.as_view(success_url='/'),
+        name='django_registration_register'),
+    url(r'^accounts/', include('django_registration.backends.one_step.urls')),
+    url(r'^accounts/', include('django.contrib.auth.urls')),
+    url(r'^logout/$', views.LogoutView.as_view(), {"next_page": '/'}), 
 ]
