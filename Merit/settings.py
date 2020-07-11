@@ -43,7 +43,8 @@ INSTALLED_APPS = [
     'meritapp',
     'bootstrap4',
     'rest_framework',
-    'cloudinary'
+    'cloudinary',
+    'tinymce'
 ]
 
 MIDDLEWARE = [
