@@ -44,7 +44,7 @@ INSTALLED_APPS = [
     'bootstrap4',
     'rest_framework',
     'cloudinary',
-    'tinymce'
+    'tinymce',
 ]
 
 MIDDLEWARE = [
@@ -137,3 +137,7 @@ cloudinary.config(
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+
+LOGIN_REDIRECT_URL = 'index'
+LOGOUT_REDIRECT_URL = 'index'

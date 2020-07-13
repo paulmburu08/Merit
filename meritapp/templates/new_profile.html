@@ -1,4 +1,4 @@
-{% load bootstrap3 %}
+{% load bootstrap4 %}
 {% load static %}
 
 <!DOCTYPE html>
@@ -18,10 +18,10 @@
             {% if user.is_authenticated %}
             <p><b>Welcome, {{ user.get_username }}. Thanks for creating an account. Kindly create a profile so as to continue</b></p>
             {% endif %}
-            <form  action="{%url 'profile' %}" method="post" enctype="multipart/form-data">
+            <form  action="{%url 'new_profile' %}" method="post" enctype="multipart/form-data" class="form">
                 {%csrf_token%}
             
-                {% bootstrap_form form%}
+                {% bootstrap_form form %}
                 <input type="submit" class="btn btn-success" value="Post">
             </form>
             
