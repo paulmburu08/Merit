@@ -5,14 +5,16 @@ from django.contrib.auth.models import User
 
 # Create your models here.
 class Profile(models.Model):
-    name = HTMLField()
     profile_photo = CloudinaryField('image')
     bio = HTMLField()
+    number = HTMLField()
+    email = HTMLField()
+    address = HTMLField()
     creat_date = models.DateTimeField(auto_now_add=True)
     user = models.ForeignKey(User,on_delete=models.DO_NOTHING)
 
     def __str__(self):
-        return self.name
+        return self.email
 
 class Project(models.Model):
     title = HTMLField()
