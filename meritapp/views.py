@@ -1,5 +1,6 @@
-from django.shortcuts import render
-from django.http import HttpResponseRedirect
+from django.shortcuts import render,redirect
+from django.http import HttpResponseRedirect,Http404
+from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse_lazy,reverse
 from .forms import ProfileForm,ProjectForm
@@ -32,3 +33,21 @@ def profile(request,id):
 
     profile = Profile.get_profile_by_id(id)
     return render(request, 'profile.html',{'profile':profile,'projects':projects})
+
+@login_required(login_url='/accounts/login/')
+def new_project(request):
+    current_user = request.user
+    profile = Profile.objects.get(user = current_user)
+    if request.method == 'POST':
+        form = ProjectForm(request.POST, request.FILES)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.profile = profile
+            post.user = current_user
+            post.save()
+        return redirect('/')
+
+    else:
+        form = ProjectForm()
+
+    return render(request, 'new_project.html',{'form':form})
