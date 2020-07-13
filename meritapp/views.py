@@ -8,6 +8,12 @@ from .models import Project,Profile
 
 # Create your views here.
 @login_required(login_url='/accounts/login/')
+def index(request):
+    projects = Project.objects.all().order_by('-post_date')
+
+    return render(request,'index.html',{'projects':projects})
+
+@login_required(login_url='/accounts/login/')
 def new_profile(request):
     current_user = request.user
     if request.method == 'POST':
