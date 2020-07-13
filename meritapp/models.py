@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 
 # Create your models here.
 class Profile(models.Model):
+    name = HTMLField()
     profile_photo = CloudinaryField('image')
     bio = HTMLField()
     number = HTMLField()

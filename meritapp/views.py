@@ -3,13 +3,16 @@ from django.http import HttpResponseRedirect,Http404
 from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse_lazy,reverse
+from rest_framework.response import Response
+from rest_framework.views import APIView
+from .serializer import ProfileSerializer
 from .forms import ProfileForm,ProjectForm
 from .models import Project,Profile
 
 # Create your views here.
 @login_required(login_url='/accounts/login/')
 def index(request):
-    projects = Project.objects.all().order_by('-post_date')
+    projects = Project.objects.all().order_by('-create_date')
 
     return render(request,'index.html',{'projects':projects})
 
@@ -57,3 +60,9 @@ def new_project(request):
         form = ProjectForm()
 
     return render(request, 'new_project.html',{'form':form})
+
+class ProfileList(APIView):
+    def get(self, request, format = None):
+        all_profiles = Profile.objects.all()
+        serializers = ProfileSerializer(all_profiles, many = True)
+        return Response(serializers.data)

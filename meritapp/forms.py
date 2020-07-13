@@ -6,6 +6,7 @@ class ProfileForm(forms.ModelForm):
         model = Profile
         exclude = ['user','creat_date']
         widgets = {
+            'name' : forms.TextInput(),
             'number' : forms.TextInput(),
             'email' : forms.EmailInput(),
             'address' : forms.TextInput()
