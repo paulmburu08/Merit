@@ -10,3 +10,14 @@ class ProfileForm(forms.Form):
             'email' : forms.EmailInput(),
             'address' : forms.TextInput()
         }
+
+class ProjectForm(forms.Form):
+    class Meta:
+        model = Project
+        exclude = ['user','post_date','profile']
+        widgets = {
+            'title' : forms.TextInput(),
+            'link' : forms.TextInput(),
+            'technologies' : forms.Textarea(),
+            'collaborators' : forms.Textarea()
+        }
