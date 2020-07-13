@@ -8,7 +8,8 @@ class Profile(models.Model):
     name = HTMLField()
     profile_photo = CloudinaryField('image')
     bio = HTMLField()
+    creat_date = models.DateTimeField(auto_now_add=True)
     user = models.ForeignKey(User,on_delete=models.DO_NOTHING)
 
     def __str__(self):
-        return self.profile_photo
+        return self.name
