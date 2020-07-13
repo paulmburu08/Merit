@@ -21,3 +21,14 @@ def new_profile(request):
         form = ProfileForm()
 
     return render(request, 'new_profile.html',{'form':form})
+
+@login_required(login_url='/accounts/login/')
+def profile(request,id):
+    try:
+        projects = Project.objects.filter(user__id = id)
+
+    except ObjectDoesNotExist:
+        raise Http404()
+
+    profile = Profile.get_profile_by_id(id)
+    return render(request, 'profile.html',{'profile':profile,'projects':projects})

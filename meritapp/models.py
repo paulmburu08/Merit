@@ -16,6 +16,11 @@ class Profile(models.Model):
     def __str__(self):
         return self.email
 
+    @classmethod
+    def get_profile_by_id(cls,id):
+        profile = cls.objects.get(user__id = id)
+        return profile
+
 class Project(models.Model):
     title = HTMLField()
     landing_page_image = CloudinaryField('image')
