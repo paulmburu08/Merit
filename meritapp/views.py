@@ -5,7 +5,7 @@ from django.contrib.auth.decorators import login_required
 from django.urls import reverse_lazy,reverse
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from .serializer import ProfileSerializer
+from .serializer import ProfileSerializer,ProjectSerializer
 from .forms import ProfileForm,ProjectForm
 from .models import Project,Profile
 
@@ -60,6 +60,16 @@ def new_project(request):
         form = ProjectForm()
 
     return render(request, 'new_project.html',{'form':form})
+
+def project(request,id):
+    try:
+        project = Project.objects.get(id = id)
+
+    except ObjectDoesNotExist:
+        raise Http404()
+
+    return render(request, 'project.html',{'project':project})
+
 
 class ProfileList(APIView):
     def get(self, request, format = None):

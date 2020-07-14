@@ -35,3 +35,8 @@ class Project(models.Model):
 
     def __str__(self):
         return self.title
+
+    @classmethod
+    def get_profile_projects(cls,id):
+        profile_projects = cls.objects.get(profile__id = id)
+        return profile_projects
