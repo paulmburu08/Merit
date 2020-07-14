@@ -1,5 +1,5 @@
 from django import forms
-from .models import Profile,Project
+from .models import Profile,Project,Ratings
 
 class ProfileForm(forms.ModelForm):
     class Meta:
@@ -22,3 +22,52 @@ class ProjectForm(forms.ModelForm):
             'technologies' : forms.Textarea(),
             'collaborators' : forms.Textarea()
         }
+
+DESIGN = [
+    ('1','1'),
+    ('2','2'),
+    ('3','3'),
+    ('4','4'),
+    ('5','5'),
+    ('6','6'),
+    ('7','7'),
+    ('8','8'),
+    ('9','9'),
+    ('10','10'),
+]
+
+USABILITY = [
+    ('1','1'),
+    ('2','2'),
+    ('3','3'),
+    ('4','4'),
+    ('5','5'),
+    ('6','6'),
+    ('7','7'),
+    ('8','8'),
+    ('9','9'),
+    ('10','10'),
+]
+
+CONTENT = [
+    ('1','1'),
+    ('2','2'),
+    ('3','3'),
+    ('4','4'),
+    ('5','5'),
+    ('6','6'),
+    ('7','7'),
+    ('8','8'),
+    ('9','9'),
+    ('10','10'),
+]
+
+class RateForm(forms.ModelForm):
+    design = forms.ChoiceField(choices=DESIGN, widget=forms.RadioSelect())
+    usability = forms.ChoiceField(choices=USABILITY, widget=forms.RadioSelect())
+    content = forms.ChoiceField(choices=CONTENT, widget=forms.RadioSelect())
+
+    class Meta:
+        model = Ratings
+        exclude = ['project' ,'user' , 'average']
+        fields = ['design' , 'usability', 'content']

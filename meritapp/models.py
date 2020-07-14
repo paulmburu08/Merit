@@ -12,7 +12,7 @@ class Profile(models.Model):
     email = HTMLField()
     address = HTMLField()
     creat_date = models.DateTimeField(auto_now_add=True)
-    user = models.ForeignKey(User,on_delete=models.DO_NOTHING)
+    user = models.ForeignKey(User,on_delete=models.CASCADE)
 
     def __str__(self):
         return self.email
@@ -30,8 +30,8 @@ class Project(models.Model):
     technologies = HTMLField()
     collaborators = HTMLField()
     post_date = models.DateTimeField(auto_now_add=True)
-    user = models.ForeignKey(User,on_delete=models.DO_NOTHING)
-    profile = models.ForeignKey(Profile,on_delete=models.DO_NOTHING)
+    user = models.ForeignKey(User,on_delete=models.CASCADE)
+    profile = models.ForeignKey(Profile,on_delete=models.CASCADE)
 
     def __str__(self):
         return self.title
@@ -40,3 +40,15 @@ class Project(models.Model):
     def get_profile_projects(cls,id):
         profile_projects = cls.objects.get(profile__id = id)
         return profile_projects
+
+class Ratings(models.Model):
+    
+    project = models.ForeignKey(Project,on_delete=models.CASCADE)
+    user = models.ForeignKey(User,on_delete=models.CASCADE)
+    design = models.IntegerField(default=0)
+    usability = models.IntegerField(default=0)
+    content = models.IntegerField(default=0)
+    average = models.IntegerField(default=0)
+
+    def __str__(self):
+        return self.average
