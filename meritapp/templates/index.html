@@ -13,6 +13,28 @@
 </head>
 <body>
     {% include 'navbar.html' %}
-    
+    <div class="container-fluid">
+        <div class="jumbotron">
+            <h3 class="heading">Merit</h3>
+            <hr>
+            <p>Rating your skills is what we do best</p>
+        </div>
+        {% for project in projects %}
+        <div class="card" style="width: 201px;">
+            <div class="card-header">
+                <div class="circular-image">
+                <img class="profile_photo" src="{{image.profile.profile_photo.url}}">
+                </div> &nbsp;
+                <b class="user">{{ project.user.username }}</b>
+            </div>
+            <a href="{% url 'project' project.id %}">
+            <img class="card-img-top" src="{{ project.landing_page_image.url }}"  style="width: 200px; height: auto;" alt="Card image cap">
+            </a>
+            <div class="card-body">
+            {{project.post_date|date:"l d-F Y"}}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
 </body>
 </html>

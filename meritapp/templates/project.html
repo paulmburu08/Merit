@@ -1,0 +1,28 @@
+{% load bootstrap4 %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <script src="https://use.fontawesome.com/c6c3a50631.js"></script>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <title>Profile</title>
+</head>
+<body>
+    {% include 'navbar.html' %}
+    <form  action="/ratings/{{project.id}}" method="post" enctype="multipart/form-data">
+        {%csrf_token%}
+    
+        {% bootstrap_form form%}
+        <input type="submit" class="btn btn-success btn-sm" value="Post">
+      </form>
+      {{ design_average_rates }}
+      {{ usability_average_rates }}
+      {{ content_average_rates }}
+      <br>
+      <br>
+</body>
+</html>

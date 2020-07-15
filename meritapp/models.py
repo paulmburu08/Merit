@@ -28,18 +28,13 @@ class Project(models.Model):
     description = HTMLField()
     link = HTMLField()
     technologies = HTMLField()
-    collaborators = HTMLField()
+    collaborators = HTMLField(blank=True)
     post_date = models.DateTimeField(auto_now_add=True)
     user = models.ForeignKey(User,on_delete=models.CASCADE)
     profile = models.ForeignKey(Profile,on_delete=models.CASCADE)
 
     def __str__(self):
         return self.title
-
-    @classmethod
-    def get_profile_projects(cls,id):
-        profile_projects = cls.objects.get(profile__id = id)
-        return profile_projects
 
 class Ratings(models.Model):
     
@@ -52,3 +47,43 @@ class Ratings(models.Model):
 
     def __str__(self):
         return self.average
+
+    @classmethod
+    def get_average_design_rates(cls,id):
+        rates = cls.objects.filter(project__id = id).values_list('design', flat = True)
+        sum = 0
+        if len(rates) > 1:
+            for rate in rates:
+                sum = 0 + rate
+
+                return sum // len(rates)
+
+            else:
+                return rate
+
+    @classmethod
+    def get_average_usability_rates(cls,id):
+        rates = cls.objects.filter(project__id = id).values_list('usability', flat = True)
+        sum = 0
+        for rate in rates:
+            if len(rates) > 1:
+                sum = 0 + rate
+
+                return sum // len(rates)
+            else:
+                return rate
+
+    @classmethod
+    def get_average_content_rates(cls,id):
+        rates = cls.objects.filter(project__id = id).values_list('content', flat = True)
+        sum = 0
+        for rate in rates:
+            if len(rates) > 1:
+                sum = 0 + rate
+
+                return sum // len(rates)
+
+            else:
+                return rate
+
+    
