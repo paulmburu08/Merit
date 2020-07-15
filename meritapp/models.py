@@ -65,7 +65,8 @@ class Ratings(models.Model):
             av = sum_num // len(rates)
             return av
         else:
-            return int(rates)
+            for rate in rates:
+                return rate
 
     @classmethod
     def get_average_usability_rates(cls,id):
@@ -79,7 +80,8 @@ class Ratings(models.Model):
             av = sum_num // len(rates)
             return av
         else:
-            return int(rates)
+            for rate in rates:
+                return rate
 
     @classmethod
     def get_average_content_rates(cls,id):
@@ -93,4 +95,5 @@ class Ratings(models.Model):
             av = sum_num // len(rates)
             return av
         else:
-            return int(rates)
+            for rate in rates:
+                return rate
