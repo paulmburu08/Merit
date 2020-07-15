@@ -1,3 +1,4 @@
+[![codebeat badge](https://codebeat.co/badges/aae1b270-087b-4443-8fa8-534751f79056)](https://codebeat.co/projects/github-com-paulmburu08-merit-master)
 # MERIT
 An applicaion where a user can post a project he/she has created and get it reviewed by his/her peers.
 
@@ -5,7 +6,7 @@ An applicaion where a user can post a project he/she has created and get it revi
 {paulmburu08}https://github.com/paulmburu08
 
 # Live link
-
+https://paul-merit.herokuapp.com/accounts/login/?next=/
 
 # Description
 As a User you will be able to:
