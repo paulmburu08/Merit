@@ -1,5 +1,7 @@
 from django import forms
 from .models import Profile,Project,Ratings
+from django.utils.safestring import mark_safe
+from django.forms.widgets import RadioSelect
 
 class ProfileForm(forms.ModelForm):
     class Meta:
@@ -71,3 +73,4 @@ class RateForm(forms.ModelForm):
         model = Ratings
         exclude = ['project' ,'user' , 'average']
         fields = ['design' , 'usability', 'content']
+

@@ -50,40 +50,42 @@ class Ratings(models.Model):
 
     @classmethod
     def get_average_design_rates(cls,id):
-        rates = cls.objects.filter(project__id = id).values_list('design', flat = True)
-        sum = 0
+        rates = cls.objects.filter(project__id = id).values_list('design', flat = True).order_by('id')
+        sum_num = 0
+        
         if len(rates) > 1:
             for rate in rates:
-                sum = 0 + rate
+                sum_num = sum_num + rate
 
-                return sum // len(rates)
-
-            else:
-                return rate
+            av = sum_num // len(rates)
+            return av
+        else:
+            return rates
 
     @classmethod
     def get_average_usability_rates(cls,id):
-        rates = cls.objects.filter(project__id = id).values_list('usability', flat = True)
-        sum = 0
-        for rate in rates:
-            if len(rates) > 1:
-                sum = 0 + rate
+        rates = cls.objects.filter(project__id = id).values_list('usability', flat = True).order_by('id')
+        sum_num = 0
+        
+        if len(rates) > 1:
+            for rate in rates:
+                sum_num = sum_num + rate
 
-                return sum // len(rates)
-            else:
-                return rate
+            av = sum_num // len(rates)
+            return av
+        else:
+            return rates
 
     @classmethod
     def get_average_content_rates(cls,id):
-        rates = cls.objects.filter(project__id = id).values_list('content', flat = True)
-        sum = 0
-        for rate in rates:
-            if len(rates) > 1:
-                sum = 0 + rate
+        rates = cls.objects.filter(project__id = id).values_list('content', flat = True).order_by('id')
+        sum_num = 0
+        
+        if len(rates) > 1:
+            for rate in rates:
+                sum_num = sum_num + rate
 
-                return sum // len(rates)
-
-            else:
-                return rate
-
-    
+            av = sum_num // len(rates)
+            return av
+        else:
+            return rates

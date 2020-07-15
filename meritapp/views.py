@@ -74,8 +74,11 @@ def project(request,id):
     usability_average_rates = Ratings.get_average_usability_rates(id)
     content_average_rates = Ratings.get_average_content_rates(id)
 
+    all_rates = design_average_rates + usability_average_rates + content_average_rates
+    average_rates = all_rates // 3
+
     return render(request, 'project.html',{'project':project, 'form':form,'design_average_rates':design_average_rates,
-                    'usability_average_rates':usability_average_rates,'content_average_rates':content_average_rates})
+                    'usability_average_rates':usability_average_rates,'content_average_rates':content_average_rates,'average_rates':average_rates})
 
 @login_required(login_url='/accounts/login/')
 def ratings(request,id):

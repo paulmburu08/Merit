@@ -12,16 +12,36 @@
     <title>Profile</title>
 </head>
 <body>
-    {% include 'navbar.html' %}
-    <form  action="/ratings/{{project.id}}" method="post" enctype="multipart/form-data">
-        {%csrf_token%}
-    
-        {% bootstrap_form form%}
-        <input type="submit" class="btn btn-success btn-sm" value="Post">
-      </form>
-      {{ design_average_rates }}
-      {{ usability_average_rates }}
-      {{ content_average_rates }}
+    <div class="container-fluid">
+        {% include 'navbar.html' %}
+        <br>
+        <div class="row">
+            <div class="col-md-6">
+                <img src="{{project.landing_page_image.url }}" style="width: 100%; height: auto;" alt="landing page image">
+            </div>
+            <div class="col-md-6">
+                <div class="card rates">
+                    <form  action="/ratings/{{project.id}}" method="post" enctype="multipart/form-data">
+                        {%csrf_token%}
+                    
+                        <div class="form">{% bootstrap_form form%}</div>
+                        <input type="submit" class="btn btn-success btn-sm" value="Rate">
+                        <br> <br>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <br>
+        <p> Design average rate : {{ design_average_rates }}</p> 
+                        <p> Usability average rate : {{ usability_average_rates }}</p>
+                        <p> Content average rate : {{ content_average_rates }}</p>
+        <h3>{{ project.title }}</h3>
+        <p> {{ project.description }} </p>
+        <a href="{{ project.link }}"></a> 
+        <p> {{ project.technologies }} </p> 
+        <p> {{ project.collaborators }} </p>
+        <p> {{ project.post_date }} </p>
+    </div>
       <br>
       <br>
 </body>

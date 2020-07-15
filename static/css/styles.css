@@ -1,0 +1,39 @@
+
+.jumbotron{
+    background-image: url(../images/image.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    color: white;
+    height: 500px;  
+}
+
+.header{
+    text-align: center;
+    padding-top: 100px;
+    font-weight: bold;
+}
+
+hr{
+    height: 1px;
+    background-color: white;
+    border: none;
+    width: 50%;
+    display: inline-block;
+    text-align: center;
+}
+
+.heading{
+    font-size: 60px;
+}
+
+.rates{
+    padding: 10px;
+}
+
+.form{
+    display: flex;
+    justify-content: right;
+    justify-content: space-evenly;
+}
