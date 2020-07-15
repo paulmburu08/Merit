@@ -36,6 +36,11 @@ class Project(models.Model):
     def __str__(self):
         return self.title
 
+    @classmethod
+    def search_by_name(cls,search_term):
+        project = cls.objects.filter(title__icontains =search_term)
+        return project
+
 class Ratings(models.Model):
     
     project = models.ForeignKey(Project,on_delete=models.CASCADE)

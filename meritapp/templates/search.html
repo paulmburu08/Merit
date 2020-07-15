@@ -1,0 +1,44 @@
+{% load bootstrap4 %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <script src="https://use.fontawesome.com/c6c3a50631.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway&family=Yellowtail&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital@1&family=Open+Sans+Condensed:ital,wght@1,300&family=Playfair+Display&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <title>Merit</title>
+</head>
+<body>
+    <div class="container-fluid">
+        {% include 'navbar.html' %}
+        {% if projects%}
+        <h2 class="search">Found {{ projects|length }} of searched term {{message}}</h2> <br><br>
+            {% else %}
+        <h2 class="search"> Found 0 projects for the search term {{message}}</h2> <br><br>
+            {% endif %} <br>
+        <div class="row">
+            {% for project in projects %}
+            <div class="col-md-3 col-sm-6">
+                <div class="card" style="width: 90%;">
+                    <a href="{% url 'project' project.id %}">
+                    <img class="card-img-top" src="{{ project.landing_page_image.url }}" alt="Card image cap">
+                    </a>
+                    <div class="card-body">
+                    <p class="name">{{ project.user.username }}</p>
+                    <p class="date">{{project.post_date|date:"l d-F Y"}}</p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    <br>
+    <br>
+    <br>
+</body>
+</html>
