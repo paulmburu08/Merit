@@ -58,39 +58,30 @@ class Ratings(models.Model):
         rates = cls.objects.filter(project__id = id).values_list('design', flat = True).order_by('id')
         sum_num = 0
         
-        if len(rates) > 1:
-            for rate in rates:
-                sum_num = sum_num + rate
+        for rate in rates:
+            sum_num = sum_num + rate
 
-            av = sum_num // len(rates)
-            return av
-        else:
-            return rates
+        av = sum_num // len(rates)
+        return av
 
     @classmethod
     def get_average_usability_rates(cls,id):
         rates = cls.objects.filter(project__id = id).values_list('usability', flat = True).order_by('id')
         sum_num = 0
         
-        if len(rates) > 1:
-            for rate in rates:
-                sum_num = sum_num + rate
+        for rate in rates:
+            sum_num = sum_num + rate
 
-            av = sum_num // len(rates)
-            return av
-        else:
-            return rates
+        av = sum_num // len(rates)
+        return av
 
     @classmethod
     def get_average_content_rates(cls,id):
         rates = cls.objects.filter(project__id = id).values_list('content', flat = True).order_by('id')
         sum_num = 0
         
-        if len(rates) > 1:
-            for rate in rates:
-                sum_num = sum_num + rate
+        for rate in rates:
+            sum_num = sum_num + rate
 
-            av = sum_num // len(rates)
-            return av
-        else:
-            return rates
+        av = sum_num // len(rates)
+        return av
