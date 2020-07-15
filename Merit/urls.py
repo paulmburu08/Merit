@@ -24,7 +24,7 @@ urlpatterns = [
     url(r'',include('meritapp.urls')), 
     url(r'^tinymce/', include('tinymce.urls')),
     url('^accounts/register/',
-        RegistrationView.as_view(success_url='new/profile'),
+        RegistrationView.as_view(success_url='/new/profile'),
         name='django_registration_register'),
     url(r'^accounts/', include('django_registration.backends.one_step.urls')),
     url(r'^accounts/', include('django.contrib.auth.urls')),
