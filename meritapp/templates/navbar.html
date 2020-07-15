@@ -1,9 +1,14 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway&family=Yellowtail&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital@1&family=Open+Sans+Condensed:ital,wght@1,300&family=Playfair+Display&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
     <title></title>
 </head>
 <body>
@@ -24,6 +29,9 @@
             <li class="nav-item">
                 <a class="nav-link" href="{% url 'profile' user.id %}">Profile</a>
             </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'endpoint' %}">API</a>
+          </li>
             <li class="nav-item">
                 <a class="nav-link" href="/logout">Logout</a>
             </li>

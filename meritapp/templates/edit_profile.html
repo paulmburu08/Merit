@@ -15,10 +15,7 @@
     {% include 'navbar.html' %}
     <div class="container-fluid">
         <div class="edit-profile">
-            {% if user.is_authenticated %}
-            <p><b>Welcome, {{ user.get_username }}. Thank you for creating an account. Kindly create a profile so as to continue</b></p>
-            {% endif %}
-            <form  action="{%url 'new_profile' %}" method="post" enctype="multipart/form-data">
+            <form  action="{%url 'edit_profile' %}" method="post" enctype="multipart/form-data">
                 {%csrf_token%}
             
                 {% bootstrap_form form %}

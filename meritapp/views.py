@@ -33,6 +33,22 @@ def new_profile(request):
     return render(request, 'new_profile.html',{'form':form})
 
 @login_required(login_url='/accounts/login/')
+def edit_profile(request):
+    current_user = request.user
+    if request.method == 'POST':
+        form = ProfileForm(request.POST, request.FILES)
+        if form.is_valid():
+            profile = form.save(commit=False)
+            profile.user = current_user
+            profile.save()
+        return HttpResponseRedirect(reverse('profile',args=[str(request.user.id)]))
+
+    else:
+        form = ProfileForm()
+
+    return render(request, 'edit_profile.html',{'form':form})
+
+@login_required(login_url='/accounts/login/')
 def profile(request,id):
     try:
         projects = Project.objects.filter(user__id = id)
@@ -74,11 +90,8 @@ def project(request,id):
     usability_average_rates = Ratings.get_average_usability_rates(id)
     content_average_rates = Ratings.get_average_content_rates(id)
 
-    all_rates = design_average_rates + usability_average_rates + content_average_rates
-    average_rates = all_rates // 3
-
     return render(request, 'project.html',{'project':project, 'form':form,'design_average_rates':design_average_rates,
-                    'usability_average_rates':usability_average_rates,'content_average_rates':content_average_rates,'average_rates':average_rates})
+                    'usability_average_rates':usability_average_rates,'content_average_rates':content_average_rates})
 
 @login_required(login_url='/accounts/login/')
 def ratings(request,id):
@@ -98,6 +111,11 @@ def ratings(request,id):
             form = RateForm()
 
         return HttpResponseRedirect(reverse('project',args=[str(id)]))
+
+@login_required(login_url='/accounts/login/')
+def endpoint(request):
+
+    return render(request, 'endpoint.html')    
 
 class ProfileList(APIView):
     def get(self, request, format = None):

@@ -4,6 +4,8 @@ from . import views
 urlpatterns = [
     url('^$',views.index,name='index'),
     url(r'^new/profile$', views.new_profile, name='new_profile'),
+    url(r'^edit/profile$', views.edit_profile, name='edit_profile'),
+    url(r'^api/endpoint$', views.endpoint, name='endpoint'),
     url(r'^profile/(\d+)', views.profile, name='profile'),
     url(r'^new/project$', views.new_project, name='new_project'),
     url(r'^api/profiles/$', views.ProfileList.as_view()),

@@ -24,8 +24,18 @@ hr{
     text-align: center;
 }
 
+.hr1{
+    height: 1px;
+    background-color: black;
+    border: none;
+    width: 90%;
+    display: inline-block;
+    text-align: center;
+}
+
 .heading{
     font-size: 60px;
+    font-weight: bold;
 }
 
 .rates{
@@ -37,3 +47,48 @@ hr{
     justify-content: right;
     justify-content: space-evenly;
 }
+
+.profile-wrapper {
+    display: inline-block;
+    position: relative;
+    width: 200px;
+    height: 200px;
+    overflow: hidden;
+    border-radius: 50%;
+}
+
+.profile-wrapper img {
+width: auto;
+height: 100%;
+margin-left: -50px;
+}
+
+.bio{
+    margin-top: 10px;  
+}
+
+.navbar{
+    font-family: 'Raleway', sans-serif;
+}
+
+.navbar-brand{
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.name{
+    font-weight: bold;
+}
+
+.date{
+    font-family: 'Open Sans Condensed', sans-serif;
+}
+
+.rates{
+    font-family: 'Lora', serif;
+}
+
+.project_head{
+    font-weight: bold;
+}
+

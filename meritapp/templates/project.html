@@ -8,6 +8,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <script src="https://use.fontawesome.com/c6c3a50631.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway&family=Yellowtail&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Lora:ital@1&family=Open+Sans+Condensed:ital,wght@1,300&family=Playfair+Display&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
     <title>Profile</title>
 </head>
@@ -32,15 +34,19 @@
             </div>
         </div>
         <br>
-        <p> Design average rate : {{ design_average_rates }}</p> 
-                        <p> Usability average rate : {{ usability_average_rates }}</p>
-                        <p> Content average rate : {{ content_average_rates }}</p>
-        <h3>{{ project.title }}</h3>
-        <p> {{ project.description }} </p>
-        <a href="{{ project.link }}"></a> 
+        {% if design_average_rates %}
+            <p class="rates"> Design average rate : <b>{{ design_average_rates }}</b></p> 
+            <p class="rates"> Usability average rate : <b>{{ usability_average_rates }}</b></p>
+            <p class="rates"> Content average rate : <b>{{ content_average_rates }}</b></p>
+        {% else %}
+            <p>No ratings yet</p>
+        {% endif %}
+        <h3 class="project_head">{{ project.title }}</h3>
+        <p> {{ project.description }} </p> 
         <p> {{ project.technologies }} </p> 
         <p> {{ project.collaborators }} </p>
-        <p> {{ project.post_date }} </p>
+        <a  class="website" href="{{ project.link }}">Go to website</a> <br><br>
+        <p class="date"> {{ project.post_date }} </p>
     </div>
       <br>
       <br>
